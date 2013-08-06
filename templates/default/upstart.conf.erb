@@ -1,0 +1,11 @@
+
+description "autossh-<%= @name %>"
+author "Graham Christensen <graham@zippykid.com>"
+
+start on started networking
+stop on stopping networking
+
+script
+  <%= @command %>
+end script
+
