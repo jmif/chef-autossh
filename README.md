@@ -28,12 +28,12 @@ end
 ```
 If you were to run this resource on `machine-a` in `datacenter-a`, it would:
 
-1) open an SSH connection to datacenter-b-jumphost using the account
+1. open an SSH connection to datacenter-b-jumphost using the account
    `jumphostuser`.
-2) bind to the `192.168.1.12` interface, with port 443, on `machine-a`, and
+2. bind to the `192.168.1.12` interface, with port 443, on `machine-a`, and
    accept incoming traffic.
-3) transfer the incoming data to `datacenter-b-jumphost`
-4) send the traffic out of `datacenter-b-jumphost`'s network interface, to that
+3. transfer the incoming data to `datacenter-b-jumphost`
+4. send the traffic out of `datacenter-b-jumphost`'s network interface, to that
    network's `10.10.10.10:443` service.
 
 To be more succinct, from `datacenter-a`, you could run
