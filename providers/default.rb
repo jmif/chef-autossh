@@ -42,7 +42,7 @@ action :create do
     local_opts.unshift( '-i %s' % target_id_file)
   end
 
-  generated_command = "autossh -L %s:%s %s %s" % [
+  generated_command = "autossh -N -L %s:%s %s %s" % [
     local,
     remote,
     via,
