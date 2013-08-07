@@ -51,6 +51,20 @@ autossh "check-autossh-upstart" do
 ID
 end
 
+# It outputs a upstart configuration for this autossh tunnel which is remote
+autossh "check-autossh-upstart-is-remote" do
+  bind_to "0.0.0.0:1234"
+  forward_to "127.0.0.1:4567"
+  via "127.0.0.1"
+
+  bind "remotely"
+
+  identity <<-ID
+  The resulting upstart should have a command equal to:
+  autossh -R 0.0.0.0:1234:127.0.0.1:4567 127.0.0.1 -i /root/.autossh/check-autossh-upstart
+ID
+end
+
 # The upstart configuration has additional SSH options
 autossh "additional-ssh-options" do
   bind_to "0.0.0.0:1234"

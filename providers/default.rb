@@ -14,11 +14,14 @@ action :create do
   upstart_template = new_resource.upstart_template
 
   ssh_opts         = new_resource.ssh_options
+  ssh_bind_dir     = new_resource.bind
 
   # Update attributes for convenience
   target_id_file = id_root + "/" + (id_file || nick)
   local_opts = []
   local_opts += ssh_opts
+
+  bind_direction = ssh_bind_dir == "locally" ? "-L" : "-R"
 
   # Install dependencies
   package "autossh-%s" % nick do
@@ -42,7 +45,8 @@ action :create do
     local_opts.unshift( '-i %s' % target_id_file)
   end
 
-  generated_command = "autossh -N -L %s:%s %s %s" % [
+  generated_command = "autossh -N %s %s:%s %s %s" % [
+    bind_direction,
     local,
     remote,
     via,

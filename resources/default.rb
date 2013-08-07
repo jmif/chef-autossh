@@ -34,3 +34,8 @@ attribute :ssh_options,
   :kind_of => Array,
   :default => []
 
+attribute :bind,
+  :kind_of => String,
+  :equal_to => ["locally", "remotely"],
+  :default => "locally"
+
