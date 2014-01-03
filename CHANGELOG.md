@@ -1,3 +1,6 @@
+# 0.2.1
+Run only runlevels 3, 4, 5.
+
 # 0.2.0
 Support remote and local (local by default, preserving existing behavior)
 tunnels with `bind "locally"` or `bind "remotely"`.
