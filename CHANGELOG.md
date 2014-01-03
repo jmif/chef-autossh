@@ -1,3 +1,6 @@
+# 0.2.2
+Loosen up permissions on the autossh upstart scripts.
+
 # 0.2.1
 Run only runlevels 3, 4, 5.
 

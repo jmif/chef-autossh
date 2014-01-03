@@ -58,6 +58,7 @@ action :create do
   template "/etc/init/autossh-%s.conf" % nick do
     cookbook upstart_cookbook
     source upstart_template
+    mode 00644
     variables({
       :name => nick,
       :command => generated_command
