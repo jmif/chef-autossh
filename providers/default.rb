@@ -32,11 +32,14 @@ action :create do
   if id
     directory "root-for-autossh-%s" % nick do
       path id_root
+
+      mode '0600'
     end
 
     Chef::Log.debug('autossh:create - placing ID file at %s' % target_id_file)
     file target_id_file do
       content id
+      mode '0600'
     end
   end
 
@@ -63,5 +66,14 @@ action :create do
       :name => nick,
       :command => generated_command
     })
+
+    notifies :restart, 'service[autossh-%s]' % nick, :delayed
+  end
+
+  service "autossh-%s" % nick do
+    provider Chef::Provider::Service::Upstart
+    supports :status => true, :restart => true, :start => true, :stop => true
+
+    action [:enable, :start]
   end
 end
